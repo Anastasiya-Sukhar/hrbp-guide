@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HR BP: роль и влияние на бизнес</title>
+  <meta name="description" content="Интерактивный методический гид по функции HR Business Partner в РТК ИТ — для руководителей">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,600&display=swap" rel="stylesheet">
+  <style>
+/* ============ Pinterest-эстетика: тёплая палитра, антиква, masonry-пины ============ */
+
+:root {
+  --bg: #faf6ef;
+  --bg-soft: #f3ecdf;
+  --bg-elevated: #fffdf9;
+  --text: #2e2721;
+  --text-muted: #7d7160;
+  --accent: #b0542f;        /* терракота */
+  --accent-2: #58785f;      /* шалфей */
+  --accent-3: #8a6d9c;      /* пыльная сирень */
+  --pin-1: #f6e7de;         /* blush */
+  --pin-2: #e9efe4;         /* sage */
+  --pin-3: #e5ecf3;         /* dusty blue */
+  --pin-4: #f5ecda;         /* sand */
+  --pin-5: #efe6f0;         /* mauve */
+  --pin-6: #e7efec;         /* eucalyptus */
+  --card-border: rgba(90, 70, 50, 0.1);
+  --shadow: 0 6px 22px rgba(90, 70, 50, 0.08);
+  --shadow-hover: 0 16px 38px rgba(90, 70, 50, 0.16);
+  --ok: #4d7c5a;
+  --radius: 26px;
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: "Segoe UI", "Inter", system-ui, -apple-system, sans-serif;
+  --transition: 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html[data-theme="dark"] {
+  --bg: #161210;
+  --bg-soft: #1d1815;
+  --bg-elevated: #231d18;
+  --text: #ede5d8;
+  --text-muted: #a59781;
+  --accent: #d97e50;
+  --accent-2: #87ab8e;
+  --accent-3: #b296c7;
+  --pin-1: #2c211a;
+  --pin-2: #20281f;
+  --pin-3: #1f2830;
+  --pin-4: #2c261a;
+  --pin-5: #271f2e;
+  --pin-6: #1e2a26;
+  --card-border: rgba(237, 229, 216, 0.09);
+  --shadow: 0 6px 22px rgba(0, 0, 0, 0.35);
+  --shadow-hover: 0 16px 38px rgba(0, 0, 0, 0.5);
+  --ok: #7fae91;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  transition: background 0.4s ease, color 0.4s ease;
+  overflow-x: hidden;
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+::selection { background: var(--accent); color: #fff; }
+
+/* ============ Прогресс-бар ============ */
+.progress-bar {
+  position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-3));
+  z-index: 1000; transition: width 0.1s linear;
+}
+
+/* ============ Шапка ============ */
+.header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  backdrop-filter: blur(14px);
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  border-bottom: 1px solid transparent;
+  transition: var(--transition);
+}
+.header.scrolled { border-bottom-color: var(--card-border); }
+.header__inner { display: flex; align-items: center; gap: 16px; height: 64px; }
+
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); }
+.logo__badge {
+  font-family: var(--font-display); font-style: italic; font-weight: 700;
+  background: var(--text); color: var(--bg);
+  font-size: 14px; padding: 5px 12px; border-radius: 999px;
+}
+.logo__text { font-size: 13px; color: var(--text-muted); }
+
+.nav { display: flex; gap: 2px; margin-left: auto; flex-wrap: wrap; }
+.nav a {
+  color: var(--text-muted); text-decoration: none; font-size: 13px;
+  padding: 7px 12px; border-radius: 999px; transition: var(--transition);
+  white-space: nowrap;
+}
+.nav a:hover { color: var(--text); background: var(--bg-soft); }
+.nav a.active { color: var(--bg); background: var(--text); }
+
+.theme-toggle {
+  background: var(--bg-elevated); border: 1px solid var(--card-border);
+  border-radius: 999px; width: 40px; height: 40px; cursor: pointer;
+  font-size: 16px; display: grid; place-items: center;
+  transition: var(--transition); flex-shrink: 0;
+}
+.theme-toggle:hover { transform: rotate(15deg) scale(1.06); border-color: var(--accent); }
+
+.burger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; }
+.burger span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: var(--transition); }
+.burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger.open span:nth-child(2) { opacity: 0; }
+.burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ============ Hero ============ */
+.hero {
+  position: relative; min-height: 100svh;
+  display: flex; align-items: center;
+  background:
+    radial-gradient(60% 50% at 85% 10%, color-mix(in srgb, var(--pin-1) 70%, transparent), transparent),
+    radial-gradient(50% 45% at 8% 90%, color-mix(in srgb, var(--pin-3) 65%, transparent), transparent),
+    var(--bg);
+  padding: 130px 0 90px;
+  overflow: hidden;
+}
+.hero__glow {
+  position: absolute; width: 480px; height: 480px; border-radius: 50%;
+  filter: blur(90px); opacity: 0.35; animation: floatGlow 10s ease-in-out infinite alternate;
+}
+.hero__glow--1 { background: var(--pin-5); top: -160px; right: -100px; }
+.hero__glow--2 { background: var(--pin-2); bottom: -200px; left: -120px; animation-delay: -5s; }
+@keyframes floatGlow {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(40px, 30px) scale(1.1); }
+}
+
+.hero__inner { position: relative; z-index: 1; max-width: 860px; }
+.hero__eyebrow, .hero__audience {
+  display: inline-block; font-size: 12.5px; font-weight: 600; letter-spacing: 1px;
+  text-transform: uppercase; padding: 8px 16px; border-radius: 999px; margin: 0 0 26px;
+  animation: fadeUp 0.7s ease both;
+}
+.hero__eyebrow { color: var(--accent); background: var(--bg-elevated); border: 1px solid var(--card-border); }
+.hero__audience {
+  color: var(--bg); background: var(--accent-2); margin-left: 10px;
+  animation: fadeUp 0.7s ease 0.05s both;
+}
+.hero__title {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(40px, 6.8vw, 78px);
+  line-height: 1.06; letter-spacing: -1px;
+  margin-bottom: 26px;
+  animation: fadeUp 0.7s ease 0.12s both;
+}
+.hero__title em { font-style: italic; color: var(--accent); }
+.hero__subtitle {
+  font-size: clamp(16px, 2.1vw, 20px); color: var(--text-muted);
+  max-width: 660px; margin-bottom: 38px;
+  animation: fadeUp 0.7s ease 0.2s both;
+}
+.hero__cta {
+  display: inline-block; padding: 17px 42px; border: none; cursor: pointer;
+  background: var(--text); color: var(--bg);
+  font-size: 16.5px; font-weight: 600; border-radius: 999px;
+  transition: var(--transition); text-decoration: none;
+  animation: fadeUp 0.7s ease 0.28s both;
+}
+.hero__cta:hover { background: var(--accent); color: #fff; transform: translateY(-3px); box-shadow: 0 14px 32px rgba(176, 84, 47, 0.35); }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+
+.hero__stats { display: flex; gap: 44px; margin-top: 64px; flex-wrap: wrap; animation: fadeUp 0.7s ease 0.42s both; }
+.hero__stat b {
+  font-family: var(--font-display); font-size: 40px; font-weight: 800;
+  color: var(--accent); display: block; line-height: 1.1;
+}
+.hero__stat span { font-size: 13px; color: var(--text-muted); }
+
+.hero__scroll-hint {
+  position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%);
+  color: var(--text-muted); font-size: 11.5px; letter-spacing: 1.6px; text-transform: uppercase;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.hero__scroll-hint::after {
+  content: ""; width: 1px; height: 34px; background: linear-gradient(var(--text-muted), transparent);
+  animation: scrollHint 1.8s ease infinite;
+}
+@keyframes scrollHint {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ============ Секции ============ */
+.section { padding: 100px 0; position: relative; }
+.section:nth-child(even) { background: var(--bg-soft); transition: background 0.4s ease; }
+
+.section__head { max-width: 780px; margin-bottom: 56px; }
+.section__kicker {
+  font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.section__kicker::after { content: ""; flex: 0 0 44px; height: 1px; background: var(--accent); opacity: 0.5; }
+.section__title {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4.2vw, 46px); font-weight: 800;
+  letter-spacing: -0.5px; line-height: 1.12; margin-bottom: 18px;
+}
+.section__subtitle { font-size: 17px; color: var(--text-muted); }
+
+/* Reveal-анимации */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal[data-delay="1"] { transition-delay: 0.12s; }
+.reveal[data-delay="2"] { transition-delay: 0.24s; }
+.reveal[data-delay="3"] { transition-delay: 0.36s; }
+
+/* ============ Masonry-пины ============ */
+.masonry { columns: 3 300px; column-gap: 22px; }
+.masonry--tight { columns: 3 260px; }
+.masonry > * { break-inside: avoid; margin-bottom: 22px; }
+
+.pin {
+  border-radius: var(--radius); padding: 32px 30px;
+  background: var(--pin-c, var(--bg-elevated));
+  box-shadow: var(--shadow);
+  position: relative; overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.pin-1 { --pin-c: var(--pin-1); }
+.pin-2 { --pin-c: var(--pin-2); }
+.pin-3 { --pin-c: var(--pin-3); }
+.pin-4 { --pin-c: var(--pin-4); }
+.pin-5 { --pin-c: var(--pin-5); }
+.pin-6 { --pin-c: var(--pin-6); }
+
+.pin:hover { transform: translateY(-7px) rotate(-0.4deg); box-shadow: var(--shadow-hover); }
+
+.pin__icon {
+  font-size: 26px; width: 58px; height: 58px; display: grid; place-items: center;
+  background: color-mix(in srgb, var(--bg-elevated) 82%, transparent);
+  border-radius: 50%; margin-bottom: 20px;
+  transition: var(--transition);
+}
+.pin:hover .pin__icon { transform: scale(1.1) rotate(6deg); }
+.pin__num {
+  font-family: var(--font-display); font-style: italic;
+  font-size: 40px; font-weight: 700; line-height: 1;
+  opacity: 0.28; position: absolute; top: 22px; right: 26px;
+}
+.pin__title { font-family: var(--font-display); font-size: 22px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.2px; }
+.pin__text { font-size: 15px; color: var(--text-muted); }
+.pin__tag {
+  display: inline-block; margin-top: 18px; font-size: 12px; font-weight: 600;
+  color: var(--text); background: color-mix(in srgb, var(--bg-elevated) 85%, transparent);
+  padding: 5px 14px; border-radius: 999px; letter-spacing: 0.4px;
+}
+
+/* ============ Редакционный блок (Как устроен HR) ============ */
+.editorial { max-width: 860px; }
+.editorial__lead {
+  font-family: var(--font-display);
+  font-size: clamp(19px, 2.4vw, 25px); line-height: 1.55; font-weight: 500;
+}
+.editorial__lead::first-letter {
+  font-size: 3.1em; float: left; line-height: 0.82;
+  padding: 6px 12px 0 0; color: var(--accent); font-weight: 800; font-style: italic;
+}
+.editorial__note {
+  margin-top: 34px; padding: 26px 30px; border-radius: var(--radius);
+  background: var(--pin-5); font-size: 15.5px;
+  font-style: italic; font-family: var(--font-display);
+  box-shadow: var(--shadow);
+}
+
+/* ============ Схема взаимодействия ============ */
+.scheme { display: grid; grid-template-columns: 1fr auto 1.15fr auto 1fr; align-items: stretch; }
+.scheme-node {
+  border-radius: var(--radius); padding: 30px 26px; text-align: center;
+  background: var(--pin-c, var(--bg-elevated));
+  box-shadow: var(--shadow); transition: var(--transition);
+}
+.scheme-node.pin-1 { --pin-c: var(--pin-1); }
+.scheme-node.accent { background: var(--text); color: var(--bg); }
+.scheme-node:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+.scheme-node__icon { font-size: 36px; margin-bottom: 14px; }
+.scheme-node__name { font-family: var(--font-display); font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+.scheme-node__role { font-size: 13.5px; font-weight: 600; color: var(--accent); margin-bottom: 14px; min-height: 42px; }
+.scheme-node.accent .scheme-node__role { color: var(--bg-elevated); opacity: 0.85; }
+.scheme-node__details { font-size: 14px; color: var(--text-muted); }
+.scheme-node.accent .scheme-node__details { color: var(--bg-elevated); opacity: 0.75; }
+.scheme__link {
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; color: var(--accent); padding: 0 14px; user-select: none;
+}
+.scheme__link span { display: inline-block; animation: arrowPulse 1.6s ease infinite; }
+@keyframes arrowPulse { 0%, 100% { transform: translateX(-4px); } 50% { transform: translateX(4px); } }
+
+/* ============ Кто такой HR BP ============ */
+.who { display: grid; grid-template-columns: 1.25fr 1fr; gap: 44px; align-items: center; }
+.who__text {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2.1vw, 23px); line-height: 1.65;
+}
+.who__quote {
+  background: var(--pin-1); border-radius: var(--radius);
+  padding: 38px 34px; box-shadow: var(--shadow); position: relative;
+}
+.who__quote::before {
+  content: "“"; position: absolute; top: 2px; left: 22px;
+  font-family: var(--font-display); font-size: 110px; color: var(--accent); opacity: 0.25; line-height: 1;
+}
+.who__quote p { font-family: var(--font-display); font-size: 20px; font-weight: 600; font-style: italic; line-height: 1.5; position: relative; }
+.who__quote cite { display: block; margin-top: 18px; font-size: 13.5px; color: var(--text-muted); font-style: normal; }
+
+/* ============ Уровни зрелости ============ */
+.levels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: stretch; }
+.level {
+  border-radius: var(--radius); padding: 36px 30px; position: relative;
+  background: var(--pin-c, var(--bg-elevated));
+  box-shadow: var(--shadow); transition: var(--transition);
+  display: flex; flex-direction: column;
+}
+.level:hover { transform: translateY(-7px); box-shadow: var(--shadow-hover); }
+.level--featured { outline: 2px solid var(--accent); outline-offset: -2px; }
+.level__badge {
+  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+  background: var(--text); color: var(--bg);
+  font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+  padding: 6px 18px; border-radius: 999px; white-space: nowrap;
+}
+.level__scope {
+  font-size: 11.5px; font-weight: 700; color: var(--accent);
+  text-transform: uppercase; letter-spacing: 1.4px; margin-bottom: 12px;
+}
+.level__name { font-family: var(--font-display); font-size: 24px; font-weight: 800; margin-bottom: 12px; }
+.level__text { font-size: 14.5px; color: var(--text-muted); margin-bottom: 22px; flex: 1; }
+.level__skills { display: flex; flex-direction: column; gap: 8px; }
+.level__skills span {
+  font-size: 13px; font-weight: 600;
+  background: color-mix(in srgb, var(--bg-elevated) 85%, transparent);
+  border-radius: 999px; padding: 8px 16px;
+}
+
+/* Заметки-плашки */
+.note {
+  margin-top: 40px; display: flex; gap: 16px; align-items: flex-start;
+  padding: 24px 28px; border-radius: var(--radius);
+  background: var(--bg-elevated); box-shadow: var(--shadow);
+  font-size: 15px; border-left: 4px solid var(--accent);
+}
+.note--soft { border-left-color: var(--accent-2); background: var(--pin-3); }
+.note__icon { font-size: 22px; }
+
+/* ============ Сервис vs Партнёр ============ */
+.svp-toggle {
+  display: inline-flex; background: var(--bg-elevated); border: 1px solid var(--card-border);
+  border-radius: 999px; padding: 6px; gap: 4px; margin-bottom: 32px;
+  box-shadow: var(--shadow);
+}
+.svp-toggle button {
+  border: none; background: transparent; cursor: pointer;
+  padding: 11px 30px; border-radius: 999px; font-size: 15px; font-weight: 600;
+  color: var(--text-muted); transition: var(--transition); font-family: inherit;
+}
+.svp-toggle button.active { background: var(--text); color: var(--bg); }
+
+.svp-table-wrap {
+  overflow-x: auto; border-radius: var(--radius); box-shadow: var(--shadow);
+  background: var(--bg-elevated);
+}
+.svp-table { width: 100%; border-collapse: collapse; min-width: 760px; }
+.svp-table th {
+  text-align: left; padding: 20px 24px; font-size: 12px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1.4px; color: var(--text-muted);
+  border-bottom: 1px solid var(--card-border);
+}
+.svp-table td { padding: 20px 24px; border-bottom: 1px solid var(--card-border); font-size: 14.5px; vertical-align: top; }
+.svp-table tr:last-child td { border-bottom: none; }
+.svp-table tbody tr { transition: background 0.3s ease; }
+.svp-table tbody tr:hover { background: var(--bg-soft); }
+.svp-case { font-family: var(--font-display); font-weight: 700; font-size: 16.5px; max-width: 240px; }
+.svp-cell { color: var(--text-muted); transition: opacity 0.4s ease; }
+.svp-table[data-mode="service"] .col-partner, .svp-table[data-mode="service"] .td-partner { opacity: 0.35; }
+.svp-table[data-mode="partner"] .col-service, .svp-table[data-mode="partner"] .td-service { opacity: 0.35; }
+.svp-table[data-mode="partner"] .col-partner { color: var(--accent); opacity: 1; }
+.svp-table[data-mode="service"] .col-service { color: var(--accent); opacity: 1; }
+.svp-hint { margin-top: 20px; font-size: 14px; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
+.svp-hint::before { content: "💡"; }
+
+/* ============ Итог: тезисы ============ */
+.theses { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 84px; }
+.thesis { border-radius: var(--radius); padding: 34px 30px; box-shadow: var(--shadow); background: var(--pin-c, var(--bg-elevated)); transition: var(--transition); }
+.thesis:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+.thesis__num {
+  font-family: var(--font-display); font-style: italic; font-weight: 800;
+  display: grid; place-items: center; width: 48px; height: 48px;
+  background: color-mix(in srgb, var(--bg-elevated) 85%, transparent);
+  color: var(--accent); font-size: 24px; border-radius: 50%; margin-bottom: 20px;
+}
+.thesis__title { font-family: var(--font-display); font-size: 21px; font-weight: 700; margin-bottom: 10px; }
+.thesis__text { font-size: 14.5px; color: var(--text-muted); }
+
+/* ============ Квиз ============ */
+.quiz {
+  background: var(--bg-elevated); border-radius: 30px;
+  padding: clamp(30px, 4vw, 52px);
+  box-shadow: var(--shadow); max-width: 840px; margin: 0 auto;
+}
+.quiz__title { font-family: var(--font-display); font-size: clamp(24px, 3vw, 32px); font-weight: 800; margin-bottom: 30px; }
+.quiz__q { margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px dashed var(--card-border); }
+.quiz__q:last-of-type { border-bottom: none; }
+.quiz__q-text { font-size: 16.5px; font-weight: 700; margin-bottom: 16px; }
+.quiz__opt {
+  display: flex; align-items: center; gap: 12px; width: 100%; text-align: left;
+  background: var(--bg-soft); border: 1.5px solid transparent;
+  border-radius: 999px; padding: 13px 20px; margin-bottom: 10px;
+  cursor: pointer; font-size: 15px; font-family: inherit; color: var(--text);
+  transition: var(--transition);
+}
+.quiz__opt:hover:not(:disabled) { border-color: var(--accent); transform: translateX(4px); }
+.quiz__opt:disabled { cursor: default; }
+.quiz__opt .opt-dot {
+  width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--text-muted);
+  flex-shrink: 0; transition: var(--transition);
+}
+.quiz__opt.correct { border-color: var(--ok); background: color-mix(in srgb, var(--ok) 14%, var(--bg-soft)); }
+.quiz__opt.correct .opt-dot { border-color: var(--ok); background: var(--ok); }
+.quiz__opt.wrong { border-color: #c0503c; background: color-mix(in srgb, #c0503c 10%, var(--bg-soft)); }
+.quiz__opt.wrong .opt-dot { border-color: #c0503c; }
+.quiz__explain {
+  font-size: 14px; color: var(--text-muted); margin-top: 12px;
+  padding: 13px 18px; border-radius: 14px; background: var(--bg-soft);
+  opacity: 0; max-height: 0; overflow: hidden; transition: 0.5s ease;
+}
+.quiz__explain.show { opacity: 1; max-height: 150px; }
+.quiz__result {
+  text-align: center; padding: 28px; border-radius: 22px;
+  background: var(--pin-2);
+  opacity: 0; transform: translateY(12px); transition: 0.6s ease; margin-bottom: 22px;
+}
+.quiz__result.show { opacity: 1; transform: translateY(0); }
+.quiz__result b { font-family: var(--font-display); font-size: 22px; display: block; margin-bottom: 6px; }
+.quiz__result span { color: var(--text-muted); font-size: 15px; }
+.quiz__restart {
+  display: block; margin: 0 auto; padding: 14px 36px; border: none; border-radius: 999px;
+  background: var(--text); color: var(--bg);
+  font-size: 15.5px; font-weight: 600; cursor: pointer; font-family: inherit;
+  transition: var(--transition);
+}
+.quiz__restart:hover { background: var(--accent); color: #fff; transform: translateY(-2px); }
+
+/* ============ Футер ============ */
+.footer { padding: 48px 0 40px; border-top: 1px solid var(--card-border); background: var(--bg-soft); }
+.footer__inner { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+.footer__text { font-size: 14.5px; color: var(--text-muted); max-width: 520px; }
+.footer__privacy {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; color: var(--text-muted);
+  background: var(--bg-elevated); padding: 9px 18px; border-radius: 999px;
+  box-shadow: var(--shadow);
+}
+
+/* ============ Адаптивность ============ */
+@media (max-width: 1024px) {
+  .scheme { grid-template-columns: 1fr; gap: 12px; }
+  .scheme__link { transform: rotate(90deg); padding: 8px 0; }
+  .levels, .theses { grid-template-columns: 1fr 1fr; }
+  .level--featured, .theses .thesis:first-child { grid-column: span 2; }
+}
+
+@media (max-width: 860px) {
+  .nav {
+    position: fixed; top: 64px; right: 0; left: 0;
+    background: var(--bg-elevated); flex-direction: column; padding: 16px 24px 24px;
+    border-bottom: 1px solid var(--card-border); box-shadow: var(--shadow-hover);
+    transform: translateY(-130%); transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    margin-left: 0; max-height: calc(100vh - 64px); overflow-y: auto;
+  }
+  .nav.open { transform: translateY(0); }
+  .nav a { padding: 12px 14px; font-size: 15px; }
+  .burger { display: flex; }
+  .who { grid-template-columns: 1fr; }
+  .hero__stats { gap: 30px; }
+  .section { padding: 76px 0; }
+  .hero__eyebrow, .hero__audience { margin-left: 0; margin-right: 8px; }
+}
+
+@media (max-width: 640px) {
+  .container { padding: 0 18px; }
+  .hero__cta { width: 100%; text-align: center; }
+  .svp-table { min-width: 640px; }
+  .levels, .theses { grid-template-columns: 1fr; }
+  .level--featured, .theses .thesis:first-child { grid-column: span 1; }
+  .masonry, .masonry--tight { columns: 1; }
+  .editorial__lead::first-letter { font-size: 2.6em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+  </style>
+</head>
+<body>
+  <div class="progress-bar" id="progressBar"></div>
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#hero" class="logo">
+        <span class="logo__badge">HR BP</span>
+        <span class="logo__text">РТК&nbsp;ИТ &middot; методический гид</span>
+      </a>
+      <nav class="nav" id="nav" aria-label="Разделы"></nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
+        <span class="theme-toggle__icon">&#127769;</span>
+      </button>
+      <button class="burger" id="burger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+  <main id="content"></main>
+  <footer class="footer" id="footer"></footer>
+  <script>window.__DATA__ = {
+  "meta": {
+    "title": "HR BP: роль и влияние на бизнес",
+    "audience": "Для руководителей направлений и команд"
+  },
+  "nav": [
+    { "id": "why", "label": "Бизнес, не HR" },
+    { "id": "stakes", "label": "Что на кону" },
+    { "id": "model", "label": "Как устроен HR" },
+    { "id": "scheme", "label": "Схема" },
+    { "id": "who", "label": "Кто такой HR BP" },
+    { "id": "zones", "label": "Что делает" },
+    { "id": "impact", "label": "Влияние" },
+    { "id": "maturity", "label": "Зрелость" },
+    { "id": "team", "label": "Команда" },
+    { "id": "svp", "label": "Сервис или партнёр" },
+    { "id": "final", "label": "Итог" }
+  ],
+  "hero": {
+    "eyebrow": "Интерактивный методический гид · РТК ИТ",
+    "audienceChip": "Для руководителей направлений и команд",
+    "title": "HR BP: роль и влияние на бизнес",
+    "subtitle": "Кто такие HR Business Partner в РТК ИТ, что они делают каждый день и как помогают руководителю превращать работу с людьми в предсказуемый бизнес-результат",
+    "cta": "Разобраться",
+    "stats": [
+      { "value": "11", "label": "разделов простым языком" },
+      { "value": "6", "label": "зон работы партнёра" },
+      { "value": "3", "label": "уровня зрелости роли" }
+    ]
+  },
+  "whyBusiness": {
+    "title": "Почему это разговор о бизнесе, а не о HR",
+    "subtitle": "Если вы руководитель — этот раздел про вас. Кадровые решения в ИТ-компании напрямую конвертируются в сроки, риски и деньги.",
+    "cards": [
+      {
+        "icon": "⏱",
+        "title": "Люди = сроки",
+        "text": "Кто и когда выйдет на проект определяет дату релиза не хуже, чем технический план. Команда — производственный ресурс: её плановая обеспеченность напрямую влияет на обязательства перед заказчиком.",
+        "tag": "Планирование"
+      },
+      {
+        "icon": "🛡",
+        "title": "Управление риском",
+        "text": "Уход ключевого человека или затянувшийся поиск — риск уровня проектного реестра. HR BP заранее видит такие точки и работает с ними как с любым другим бизнес-риском: выявляет, оценивает, минимизирует.",
+        "tag": "Риск-менеджмент"
+      },
+      {
+        "icon": "⚖️",
+        "title": "Цена ошибки",
+        "text": "Неправильное кадровое решение стоит дорого: время команды на онбординг, простой роли, стоимость замены. Работа с людьми — такая же экономика, как закупка или бюджетирование, только с более долгим горизонтом окупаемости.",
+        "tag": "Экономика"
+      }
+    ]
+  },
+  "stakes": {
+    "title": "Что на кону для компании",
+    "subtitle": "Три зоны, где решения HR BP сильнее всего влияют на результат бизнеса.",
+    "cards": [
+      {
+        "icon": "🎯",
+        "title": "Критичные роли",
+        "text": "Роли, без которых проект останавливается: архитектор, техлид, РП на ключевом контуре. Закрытие таких ролей — приоритет номер один: скорость важна, но без потери качества.",
+        "tag": "Непрерывность"
+      },
+      {
+        "icon": "🧩",
+        "title": "Ключевые инженеры",
+        "text": "Люди, которые держат экспертизу в критичных системах и отношениях с заказчиком. Их удержание дешевле и ценнее любого поиска замены: потеря такой экспертизы невосполнима в разумные сроки.",
+        "tag": "Экспертиза"
+      },
+      {
+        "icon": "📊",
+        "title": "ФОТ и структура",
+        "text": "Фонд оплаты труда — крупнейшая статья затрат ИТ-компании. То, как он распределён по командам и ролям, определяет способность инвестировать в развитие, а не только поддерживать текущее состояние.",
+        "tag": "Финансы"
+      }
+    ]
+  },
+  "model": {
+    "title": "Как устроен современный HR",
+    "lead": "Современный HR — это не единый «отдел кадров», а система из трёх контуров. Бизнес формулирует задачи, HR BP переводит их в кадровые решения, а Центр компетенций обеспечивает экспертизу: рекрутинг, компенсации, обучение, аналитику. Каждый контур занимается своим — и не подменяет остальных.",
+    "ulrich": "В основе — модель Дэйва Ульриха «HR: от специалистов по персоналу к партнёрам бизнеса». В РТК ИТ она адаптирована: HR BP встроен в бизнес-контур и работает рядом с руководителем, а ЦК действует как внутренний провайдер экспертизы и сервисов."
+  },
+  "scheme": {
+    "title": "Схема взаимодействия: бизнес — HR BP — ЦК",
+    "subtitle": "Три контура работают как единая система: запрос идёт от бизнеса, решение проектирует HR BP, экспертизу и поточные операции обеспечивает ЦК.",
+    "nodes": [
+      {
+        "name": "Бизнес",
+        "role": "Ставит задачи и получает результат",
+        "details": "Руководители направлений и проектные лидеры формулируют потребности: роли, сроки, структура команд.",
+        "icon": "🏢"
+      },
+      {
+        "name": "HR BP",
+        "role": "Переводит бизнес-задачи в кадровые решения",
+        "details": "Работает в связке с бизнесом: понимает контекст, проектирует решения, держит баланс интересов людей и компании.",
+        "icon": "🤝",
+        "accent": true
+      },
+      {
+        "name": "ЦК",
+        "role": "Центр компетенций — обеспечивает экспертизу",
+        "details": "Рекрутинг, компенсации и льготы, обучение, HR-аналитика: методологии, инструменты и поточные операции.",
+        "icon": "⚙️"
+      }
+    ]
+  },
+  "whoIs": {
+    "title": "Кто такой HR бизнес-партнёр",
+    "text": "HR BP — это партнёр руководителя, который отвечает за кадровую реализацию стратегии: от структуры команд и закрытия ролей до удержания ключевых людей. Он говорит с бизнесом на языке цифр и сроков, а с людьми — на языке смысла и ценностей, опираясь на ИТ-манифест РТК ИТ.",
+    "manifesto": {
+      "quote": "«Мы верим, что выигрывает тот, кто инвестирует в людей и технологии — и делает это системно»",
+      "source": "— из ценностей ИТ-манифеста РТК ИТ"
+    }
+  },
+  "zones": {
+    "title": "Что делает HR бизнес-партнёр",
+    "subtitle": "Шесть зон работы — каждая закрывает конкретный вопрос руководителя.",
+    "items": [
+      { "num": "01", "title": "Организационный дизайн", "text": "Структура команд под задачи бизнеса: когда нужен новый отдел, а когда — перераспределить роли.", "icon": "🏗" },
+      { "num": "02", "title": "Кадровое планирование", "text": "Сколько людей, каких компетенций и к какому сроку нужно под план проектов.", "icon": "🗓" },
+      { "num": "03", "title": "Таланты и преемственность", "text": "Выращивание и удержание ключевых людей, подготовка преемников на критичные роли.", "icon": "🌱" },
+      { "num": "04", "title": "Эффективность лидов", "text": "Развитие руководителей команд: от обратной связи до управления мотивацией.", "icon": "🚀" },
+      { "num": "05", "title": "Климат и вовлечённость", "text": "Диагностика атмосферы в командах и работа с причинами, а не симптомами.", "icon": "🌡" },
+      { "num": "06", "title": "Изменения и трансформация", "text": "Сопровождение реорганизаций и смены приоритетов с минимальными потерями для людей и проекта.", "icon": "🔄" }
+    ]
+  },
+  "impact": {
+    "title": "Влияние на бизнес: что делают наши HR BP",
+    "subtitle": "Пять эффектов, которые руководитель замечает в работе своей команды.",
+    "cards": [
+      { "icon": "📦", "title": "Скорость закрытия ролей", "text": "Проактивный кадровый план снижает время поиска и онбординга: проекты стартуют в срок." },
+      { "icon": "🧷", "title": "Удержание ключевых людей", "text": "Системная работа с мотивацией и ростом сокращает потери носителей экспертизы." },
+      { "icon": "🧭", "title": "Качество решений руководителей", "text": "HR BP даёт лидам данные и инструменты: решения о людях становятся обоснованными." },
+      { "icon": "💰", "title": "Здоровая структура затрат", "text": "ФОТ распределяется осознанно: инвестиции в развитие вместо латания дыр." },
+      { "icon": "📡", "title": "Раннее обнаружение проблем", "text": "Демотивация и конфликты видны до того, как превращаются в увольнения и срывы сроков." }
+    ]
+  },
+  "maturity": {
+    "title": "Три уровня зрелости роли",
+    "subtitle": "Роль растёт вместе с бизнесом: каждый уровень — ответ на новый масштаб задач.",
+    "note": "В РТК ИТ старший HR BP появился как ответ на рост сложности бизнеса: когда у одного партнёра несколько направлений и мультипроектная среда, нужен человек, который держит системную картину целиком.",
+    "levels": [
+      {
+        "name": "Младший HR BP",
+        "scope": "Зона · задача",
+        "text": "Работает под руководством опытного партнёра: закрывает отдельные задачи, ведёт операционные процессы, учится языку бизнеса.",
+        "skills": ["Исполнение задач", "Работа с ЦК", "Базовая аналитика"]
+      },
+      {
+        "name": "HR BP",
+        "scope": "Команда · направление",
+        "text": "Полноценный партнёр руководителя направления: сам проектирует кадровые решения, ведёт ключевые роли, влияет на климат и удержание.",
+        "skills": ["Самостоятельные решения", "Работа с лидами", "Управление рисками"],
+        "featured": true
+      },
+      {
+        "name": "Старший HR BP",
+        "scope": "Бизнес · система",
+        "text": "Держит портфель направлений и системную повестку: оргдизайн на уровне бизнеса, трансформации, развитие функции и преемников.",
+        "skills": ["Стратегический оргдизайн", "Трансформации", "Развитие функции"]
+      }
+    ]
+  },
+  "team": {
+    "title": "Наша команда HR BP сегодня",
+    "subtitle": "Структура команды — обезличенно: без имён и внутренних цифр, но с понятной логикой поддержки руководителей.",
+    "items": [
+      { "icon": "🧭", "title": "Покрытие направлений", "text": "За каждым крупным направлением бизнеса закреплён свой HR BP — первый контакт руководителя по любому кадровому вопросу." },
+      { "icon": "🪜", "title": "Все уровни зрелости", "text": "В команде есть младшие партнёры, HR BP и старшие HR BP: задачи масштабируются от операционных до системных." },
+      { "icon": "🔗", "title": "Связка с ЦК", "text": "Рекрутинг, компенсации и льготы, обучение и аналитика — через единые центры компетенций, без дублирования." },
+      { "icon": "📐", "title": "Единые стандарты", "text": "Общие подходы к оценке кадровых рисков, плановому обеспечению и работе с руководителями команд." },
+      { "icon": "🤝", "title": "Опора для руководителя", "text": "Руководителю не нужно разбираться во всех HR-процессах: партнёр переводит их на язык задач бизнеса." },
+      { "icon": "📈", "title": "Функция развивается", "text": "Команда растёт вместе с бизнесом: уровни зрелости и охват направлений регулярно пересматриваются." }
+    ],
+    "note": "Состав и распределение команды приведены как обезличенная схема. Детали по вашему направлению — у закреплённого HR BP."
+  },
+  "svP": {
+    "title": "Сервис или партнёр — в чём разница",
+    "subtitle": "Одна и та же задача решается по-разному. Переключите режим и сравните подходы.",
+    "columns": ["Ситуация", "Сервис", "Партнёр"],
+    "rows": [
+      {
+        "case": "Руководитель просит «найми троих»",
+        "service": "Принимает заявку в работу, стартует поиск по описанию.",
+        "partner": "Уточняет, какие задачи закрываем и почему трое: возможно, решит перераспределение или другой грейд."
+      },
+      {
+        "case": "Растёт отток из команды",
+        "service": "Готовит отчёт по увольнениям за квартал.",
+        "partner": "Разбирает причины вместе с лидом, предлагает план: нагрузка, рост, коммуникация — и проверяет эффект."
+      },
+      {
+        "case": "Запуск нового направления",
+        "service": "Ждёт заявки на найм после решения.",
+        "partner": "Участвует в планировании заранее: проектирует структуру, считает ФОТ, готовит рынок компетенций."
+      },
+      {
+        "case": "Ключевой инженер думает об уходе",
+        "service": "Сообщает руководителю о риске.",
+        "partner": "Работает с мотивом, собирает пакет решений и ведёт переговоры до результата — удержание как проект."
+      },
+      {
+        "case": "Ошибка в найме",
+        "service": "Оформляет расставание, перезапускает поиск.",
+        "partner": "Разбирает, где сломался процесс — профиль, интервью, онбординг — и чинит причину, а не следствие."
+      }
+    ]
+  },
+  "final": {
+    "title": "Итог для бизнеса",
+    "theses": [
+      { "num": "1", "title": "Работа с людьми управляема", "text": "Кадровые риски можно планировать и снижать так же, как технические и финансовые — если встроить их в управление бизнесом." },
+      { "num": "2", "title": "HR BP — функция с ROI", "text": "Скорость найма, удержание экспертизы, здоровая структура ФОТ — это измеримые эффекты, а не «атмосфера в коллективе»." },
+      { "num": "3", "title": "Партнёрство ≠ сервис", "text": "Сервис выполняет заявки. Партнёр отвечает за результат — и именно это отличает зрелую HR BP-функцию." }
+    ],
+    "quiz": {
+      "title": "Мини-квиз: проверьте себя",
+      "questions": [
+        {
+          "q": "Какой контур в модели HR РТК ИТ работает как внутренний провайдер экспертизы и сервисов?",
+          "options": ["Бизнес", "ЦК (Центр компетенций)", "HR BP"],
+          "correct": 1,
+          "explain": "ЦК обеспечивает методологии и поточные операции: рекрутинг, компенсации, обучение, аналитику."
+        },
+        {
+          "q": "Почему в РТК ИТ появился уровень «старший HR BP»?",
+          "options": ["Для контроля отчётности", "Как ответ на рост сложности бизнеса", "Для замены HR BP"],
+          "correct": 1,
+          "explain": "Когда у партнёра несколько направлений и мультипроектная среда, нужен тот, кто держит системную картину целиком."
+        },
+        {
+          "q": "Чем партнёр отличается от сервиса, когда руководитель просит «найми троих»?",
+          "options": ["Быстрее принимает заявку", "Не задаёт вопросов", "Проверяет, какая задача закрывается и каким решением"],
+          "correct": 2,
+          "explain": "Партнёр сначала уточняет контекст: возможно, задачу закроет перераспределение, а не три новые ставки."
+        }
+      ],
+      "resultTitles": {
+        "perfect": "Отлично! Вы думаете как партнёр",
+        "good": "Хорошее понимание — почти партнёрский уровень",
+        "low": "Есть куда расти — перечитайте разделы выше"
+      },
+      "restart": "Пройти ещё раз"
+    }
+  },
+  "footer": {
+    "text": "Интерактивный методический гид по функции HR Business Partner в РТК ИТ.",
+    "privacy": "Все персональные данные и внутренние цифры в материале обезличены и не раскрываются.",
+    "year": "2026"
+  }
+}
+;</script>
+  <script>
+/* HR BP: роль и влияние на бизнес — интерактивный гид.
+   Весь контент загружается из data.json. Аудитория — руководители. */
+
+const $ = (sel, root = document) => root.querySelector(sel);
+const el = (tag, cls, html) => {
+  const n = document.createElement(tag);
+  if (cls) n.className = cls;
+  if (html !== undefined) n.innerHTML = html;
+  return n;
+};
+
+/* Пины (карточки) циклично получают пастельный оттенок */
+const pinClass = (i) => `pin pin-${(i % 6) + 1}`;
+
+/* ---------- Тема ---------- */
+function initTheme() {
+  const saved = localStorage.getItem("hrbp-theme");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  applyTheme(saved || (prefersDark ? "dark" : "light"));
+  $("#themeToggle").addEventListener("click", () => {
+    const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    localStorage.setItem("hrbp-theme", next);
+    applyTheme(next);
+  });
+}
+function applyTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  $("#themeToggle .theme-toggle__icon").textContent = theme === "dark" ? "☀️" : "🌙";
+}
+
+/* ---------- Каркас секции ---------- */
+function sectionShell(id, kicker, headHtml) {
+  return `<section class="section" id="${id}">
+    <div class="container">
+      <div class="section__head reveal">
+        <div class="section__kicker">${kicker}</div>
+        ${headHtml}
+      </div>
+      <div class="section__body"></div>
+    </div>
+  </section>`;
+}
+
+function renderPin(c, i, delay) {
+  return `<article class="${pinClass(i)} reveal" data-delay="${delay}">
+    ${c.icon ? `<div class="pin__icon">${c.icon}</div>` : ""}
+    ${c.num ? `<div class="pin__num">${c.num}</div>` : ""}
+    <h3 class="pin__title">${c.title}</h3>
+    <p class="pin__text">${c.text}</p>
+    ${c.tag ? `<span class="pin__tag">${c.tag}</span>` : ""}
+  </article>`;
+}
+
+function modelNode(n, accent) {
+  return `<article class="scheme-node ${accent ? "accent" : ""} reveal">
+    <div class="scheme-node__icon">${n.icon}</div>
+    <h3 class="scheme-node__name">${n.name}</h3>
+    <div class="scheme-node__role">${n.role}</div>
+    <p class="scheme-node__details">${n.details}</p>
+  </article>`;
+}
+
+/* ---------- Рендер всех секций ---------- */
+function renderAll(d) {
+  document.title = d.meta.title;
+  const main = $("#content");
+
+  /* Навигация */
+  const nav = $("#nav");
+  d.nav.forEach((n) => {
+    const a = el("a", null, n.label);
+    a.href = "#" + n.id;
+    nav.appendChild(a);
+  });
+
+  /* Главный экран */
+  main.insertAdjacentHTML("beforeend", `
+    <section class="hero" id="hero">
+      <div class="hero__glow hero__glow--1"></div>
+      <div class="hero__glow hero__glow--2"></div>
+      <div class="container">
+        <div class="hero__inner">
+          <span class="hero__eyebrow">${d.hero.eyebrow}</span>
+          <span class="hero__audience">${d.hero.audienceChip}</span>
+          <h1 class="hero__title">${d.hero.title}</h1>
+          <p class="hero__subtitle">${d.hero.subtitle}</p>
+          <a href="#why" class="hero__cta">${d.hero.cta}</a>
+          <div class="hero__stats">
+            ${d.hero.stats.map((s) => `<div class="hero__stat"><b>${s.value}</b><span>${s.label}</span></div>`).join("")}
+          </div>
+        </div>
+      </div>
+      <div class="hero__scroll-hint">листайте</div>
+    </section>
+  `);
+
+  /* 1. Почему это разговор о бизнесе, а не о HR */
+  main.insertAdjacentHTML("beforeend", sectionShell("why", "01 · Контекст", `
+    <h2 class="section__title">${d.whyBusiness.title}</h2>
+    <p class="section__subtitle">${d.whyBusiness.subtitle}</p>`));
+  const whyBody = $("#why .section__body");
+  whyBody.className = "masonry";
+  d.whyBusiness.cards.forEach((c, i) =>
+    whyBody.insertAdjacentHTML("beforeend", renderPin(c, i, i)));
+
+  /* 2. Что на кону для компании */
+  main.insertAdjacentHTML("beforeend", sectionShell("stakes", "02 · Ставки", `
+    <h2 class="section__title">${d.stakes.title}</h2>
+    <p class="section__subtitle">${d.stakes.subtitle}</p>`));
+  const stakesBody = $("#stakes .section__body");
+  stakesBody.className = "masonry";
+  d.stakes.cards.forEach((c, i) =>
+    stakesBody.insertAdjacentHTML("beforeend", renderPin(c, i, i)));
+
+  /* 3. Как устроен современный HR — редакционный блок */
+  main.insertAdjacentHTML("beforeend", sectionShell("model", "03 · Архитектура", `
+    <h2 class="section__title">${d.model.title}</h2>`));
+  const modelBody = $("#model .section__body");
+  modelBody.className = "editorial";
+  modelBody.innerHTML = `
+    <p class="editorial__lead reveal">${d.model.lead}</p>
+    <div class="editorial__note reveal" data-delay="1">${d.model.ulrich}</div>`;
+
+  /* 4. Схема взаимодействия: бизнес — HR BP — ЦК */
+  main.insertAdjacentHTML("beforeend", sectionShell("scheme", "04 · Схема", `
+    <h2 class="section__title">${d.scheme.title}</h2>
+    <p class="section__subtitle">${d.scheme.subtitle}</p>`));
+  const schemeBody = $("#scheme .section__body");
+  const [biz, hrbp, ck] = d.scheme.nodes;
+  schemeBody.className = "scheme";
+  schemeBody.innerHTML = `
+    ${modelNode(biz, false)}
+    <div class="scheme__link reveal"><span>⇄</span></div>
+    ${modelNode(hrbp, true)}
+    <div class="scheme__link reveal"><span>⇄</span></div>
+    ${modelNode(ck, false)}`;
+
+  /* 5. Кто такой HR бизнес-партнёр */
+  main.insertAdjacentHTML("beforeend", sectionShell("who", "05 · Определение", `
+    <h2 class="section__title">${d.whoIs.title}</h2>`));
+  const whoBody = $("#who .section__body");
+  whoBody.className = "who";
+  whoBody.innerHTML = `
+    <p class="who__text reveal">${d.whoIs.text}</p>
+    <blockquote class="who__quote reveal" data-delay="1">
+      <p>${d.whoIs.manifesto.quote}</p>
+      <cite>${d.whoIs.manifesto.source}</cite>
+    </blockquote>`;
+
+  /* 6. Что делает HR бизнес-партнёр */
+  main.insertAdjacentHTML("beforeend", sectionShell("zones", "06 · Полевые работы", `
+    <h2 class="section__title">${d.zones.title}</h2>
+    <p class="section__subtitle">${d.zones.subtitle}</p>`));
+  const zonesBody = $("#zones .section__body");
+  zonesBody.className = "masonry masonry--tight";
+  d.zones.items.forEach((c, i) =>
+    zonesBody.insertAdjacentHTML("beforeend", renderPin(c, i, i % 3)));
+
+  /* 7. Влияние на бизнес */
+  main.insertAdjacentHTML("beforeend", sectionShell("impact", "07 · Эффекты", `
+    <h2 class="section__title">${d.impact.title}</h2>
+    <p class="section__subtitle">${d.impact.subtitle}</p>`));
+  const impactBody = $("#impact .section__body");
+  impactBody.className = "masonry";
+  d.impact.cards.forEach((c, i) =>
+    impactBody.insertAdjacentHTML("beforeend", renderPin(c, i, i)));
+
+  /* 8. Три уровня зрелости роли */
+  main.insertAdjacentHTML("beforeend", sectionShell("maturity", "08 · Развитие", `
+    <h2 class="section__title">${d.maturity.title}</h2>
+    <p class="section__subtitle">${d.maturity.subtitle}</p>`));
+  const matBody = $("#maturity .section__body");
+  matBody.className = "levels";
+  d.maturity.levels.forEach((lv, i) => {
+    matBody.insertAdjacentHTML("beforeend", `
+      <article class="level ${lv.featured ? "level--featured" : ""} ${pinClass(i)} reveal" data-delay="${i}">
+        ${lv.featured ? '<div class="level__badge">ядро функции</div>' : ""}
+        <div class="level__scope">${lv.scope}</div>
+        <h3 class="level__name">${lv.name}</h3>
+        <p class="level__text">${lv.text}</p>
+        <div class="level__skills">${lv.skills.map((s) => `<span>✓ ${s}</span>`).join("")}</div>
+      </article>`);
+  });
+  $("#maturity .container").insertAdjacentHTML("beforeend", `
+    <div class="note reveal">
+      <span class="note__icon">📌</span>
+      <div>${d.maturity.note}</div>
+    </div>`);
+
+  /* 9. Наша команда HR BP сегодня */
+  main.insertAdjacentHTML("beforeend", sectionShell("team", "09 · Команда", `
+    <h2 class="section__title">${d.team.title}</h2>
+    <p class="section__subtitle">${d.team.subtitle}</p>`));
+  const teamBody = $("#team .section__body");
+  teamBody.className = "masonry masonry--tight";
+  d.team.items.forEach((c, i) =>
+    teamBody.insertAdjacentHTML("beforeend", renderPin(c, i, i % 3)));
+  $("#team .container").insertAdjacentHTML("beforeend", `
+    <div class="note note--soft reveal">
+      <span class="note__icon">🔒</span>
+      <div>${d.team.note}</div>
+    </div>`);
+
+  /* 10. Сервис или партнёр — в чём разница */
+  main.insertAdjacentHTML("beforeend", sectionShell("svp", "10 · Разница подходов", `
+    <h2 class="section__title">${d.svP.title}</h2>
+    <p class="section__subtitle">${d.svP.subtitle}</p>`));
+  const svpBody = $("#svp .section__body");
+  svpBody.innerHTML = `
+    <div class="svp-toggle reveal" role="tablist">
+      <button data-mode="service" class="active" role="tab" aria-selected="true">🔧 Сервис</button>
+      <button data-mode="partner" role="tab" aria-selected="false">🤝 Партнёр</button>
+    </div>
+    <div class="svp-table-wrap reveal" data-delay="1">
+      <table class="svp-table" data-mode="service">
+        <thead>
+          <tr>
+            <th>${d.svP.columns[0]}</th>
+            <th class="col-service">🔧 ${d.svP.columns[1]}</th>
+            <th class="col-partner">🤝 ${d.svP.columns[2]}</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${d.svP.rows.map((r) => `
+            <tr>
+              <td class="svp-case">${r.case}</td>
+              <td class="svp-cell td-service">${r.service}</td>
+              <td class="svp-cell td-partner">${r.partner}</td>
+            </tr>`).join("")}
+        </tbody>
+      </table>
+    </div>
+    <p class="svp-hint reveal" data-delay="2">Нажимайте на переключатель выше — сравнивайте, как один и тот же запрос звучит для сервиса и для партнёра.</p>`;
+
+  /* 11. Итог для бизнеса */
+  main.insertAdjacentHTML("beforeend", sectionShell("final", "11 · Резюме", `
+    <h2 class="section__title">${d.final.title}</h2>`));
+  const finalBody = $("#final .section__body");
+  finalBody.innerHTML = `
+    <div class="theses">
+      ${d.final.theses.map((t, i) => `
+        <article class="${pinClass(i)} thesis reveal" data-delay="${i}">
+          <div class="thesis__num">${t.num}</div>
+          <h3 class="thesis__title">${t.title}</h3>
+          <p class="thesis__text">${t.text}</p>
+        </article>`).join("")}
+    </div>
+    <div class="quiz reveal">
+      <h3 class="quiz__title">🎯 ${d.final.quiz.title}</h3>
+      <div class="quiz__questions"></div>
+      <div class="quiz__result" id="quizResult"></div>
+      <button class="quiz__restart" id="quizRestart" style="display:none">${d.final.quiz.restart}</button>
+    </div>`;
+
+  renderQuiz(d.final.quiz);
+
+  /* Футер */
+  $("#footer").innerHTML = `
+    <div class="container footer__inner">
+      <p class="footer__text">${d.footer.text} · ${d.footer.year}</p>
+      <span class="footer__privacy">🔒 ${d.footer.privacy}</span>
+    </div>`;
+}
+
+/* ---------- Квиз ---------- */
+function renderQuiz(quiz) {
+  const wrap = $(".quiz__questions");
+  let score = 0;
+  let answered = 0;
+
+  quiz.questions.forEach((q, qi) => {
+    const qEl = el("div", "quiz__q");
+    qEl.appendChild(el("p", "quiz__q-text", `${qi + 1}. ${q.q}`));
+    const explain = el("div", "quiz__explain", "💡 " + q.explain);
+
+    q.options.forEach((opt, oi) => {
+      const btn = el("button", "quiz__opt", `<span class="opt-dot"></span><span>${opt}</span>`);
+      btn.addEventListener("click", () => {
+        if (qEl.dataset.done) return;
+        qEl.dataset.done = "1";
+        answered++;
+        const opts = qEl.querySelectorAll(".quiz__opt");
+        opts.forEach((b, i) => {
+          b.disabled = true;
+          if (i === q.correct) b.classList.add("correct");
+          if (i === oi && i !== q.correct) b.classList.add("wrong");
+        });
+        if (oi === q.correct) score++;
+        explain.classList.add("show");
+        if (answered === quiz.questions.length) showResult();
+      });
+      qEl.appendChild(btn);
+    });
+    qEl.appendChild(explain);
+    wrap.appendChild(qEl);
+  });
+
+  function showResult() {
+    const r = $("#quizResult");
+    const title =
+      score === quiz.questions.length ? quiz.resultTitles.perfect :
+      score >= quiz.questions.length - 1 ? quiz.resultTitles.good :
+      quiz.resultTitles.low;
+    r.innerHTML = `<b>${title}</b><span>Результат: ${score} из ${quiz.questions.length}</span>`;
+    r.classList.add("show");
+    const restart = $("#quizRestart");
+    restart.style.display = "block";
+    restart.onclick = () => {
+      wrap.innerHTML = "";
+      r.classList.remove("show");
+      restart.style.display = "none";
+      renderQuiz(quiz);
+    };
+  }
+}
+
+/* ---------- Интерактив: reveal, навигация, прогресс ---------- */
+function initInteractions() {
+  /* Появление при скролле */
+  const io = new IntersectionObserver(
+    (entries) => entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add("visible");
+        io.unobserve(e.target);
+      }
+    }),
+    { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+  );
+  document.querySelectorAll(".reveal").forEach((n) => io.observe(n));
+
+  /* Шапка + прогресс-бар */
+  const header = $("#header");
+  const bar = $("#progressBar");
+  const onScroll = () => {
+    header.classList.toggle("scrolled", window.scrollY > 20);
+    const h = document.documentElement;
+    bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100 + "%";
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  /* Активный пункт меню */
+  const links = document.querySelectorAll(".nav a");
+  const sections = [...links].map((a) => $(a.getAttribute("href"))).filter(Boolean);
+  const spy = new IntersectionObserver(
+    (entries) => entries.forEach((e) => {
+      if (e.isIntersecting) {
+        links.forEach((l) => l.classList.toggle("active", l.getAttribute("href") === "#" + e.target.id));
+      }
+    }),
+    { rootMargin: "-45% 0px -50% 0px" }
+  );
+  sections.forEach((s) => spy.observe(s));
+
+  /* Бургер-меню */
+  const burger = $("#burger");
+  const nav = $("#nav");
+  burger.addEventListener("click", () => {
+    burger.classList.toggle("open");
+    nav.classList.toggle("open");
+  });
+  nav.addEventListener("click", (e) => {
+    if (e.target.tagName === "A") {
+      burger.classList.remove("open");
+      nav.classList.remove("open");
+    }
+  });
+
+  /* Переключатель Сервис/Партнёр */
+  const svpTable = $(".svp-table");
+  if (svpTable) {
+    document.querySelectorAll(".svp-toggle button").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".svp-toggle button").forEach((b) => {
+          b.classList.remove("active");
+          b.setAttribute("aria-selected", "false");
+        });
+        btn.classList.add("active");
+        btn.setAttribute("aria-selected", "true");
+        svpTable.dataset.mode = btn.dataset.mode;
+      });
+    });
+  }
+}
+
+/* ---------- Запуск ---------- */
+(async function init() {
+  initTheme();
+  try {
+    const data = window.__DATA__;
+    if (!data) throw new Error("нет данных");
+    renderAll(data);
+    initInteractions();
+  } catch (err) {
+    $("#content").innerHTML = `
+      <div style="padding:120px 24px;text-align:center;font-size:17px">
+        Не удалось загрузить данные (data.json).<br>
+        <small style="opacity:.6">Откройте сайт через локальный сервер, а не как файл.</small>
+      </div>`;
+  }
+})();
+
+  </script>
+</body>
+</html>
